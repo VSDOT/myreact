@@ -28,9 +28,9 @@ workflows:
       - name: Build Android release
         script:
           npx TicketApp run-android --variant=release
-     artifacts:
-      - ios/build/*.ipa
-      - android/app/build/outputs/react/newact.apk
+    artifacts:
+       - ios/build/*.ipa
+       - android/app/build/outputs/react/newact.apk
 
       #- android/app/build/outputs/**/*.apk
 
