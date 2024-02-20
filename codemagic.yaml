@@ -23,10 +23,11 @@ workflows:
         script: |
           cd android && chmod +x gradlew && ./gradlew assembleRelease
           cd .. && npx TicketApp bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/ --assets-dest android/app/src/main/res/
-          
           cd android && ./gradlew assembleRelease
+          
+      - name: Build Android release
+        script:
           npx TicketApp run-android --variant=release
-
      artifacts:
       - ios/build/*.ipa
       - android/app/build/outputs/react/newact.apk
