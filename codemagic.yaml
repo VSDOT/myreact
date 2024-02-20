@@ -4,15 +4,15 @@ workflows:
     max_build_duration: 120
     #environment:
      # flutter: stable
-    environment: 
-      vars:
-        JAVA_HOME: "/usr/lib/jvm/java-17-openjdk-amd64" 
+    # environment: 
+    #   vars:
+    #     JAVA_HOME: "/usr/lib/jvm/java-17-openjdk-amd64" 
     scripts:
       - name: Install dependencies
         script: |
           npm install
-          apt-get update
-          apt-get install -y openjdk-17-jdk
+        #apt-get update
+        #apt-get install -y openjdk-17-jdk
 
       # - name: Build iOS
       #   script: |
