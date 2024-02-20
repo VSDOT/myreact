@@ -12,6 +12,8 @@ workflows:
         #         CM_KEY_ALIAS_USERNAME: Encrypted(Z0FBQUFBQmhKa0tWVFVJbVFOSkZpaC1XS3B3cjdGLW1BbFhKR0N4N21ObzRoaVNhaXFlQmtraVZHN2Y4djVSX0k0Vk5QMHV0Z2xVbEhjeTNMdDZxU2taUHJUN2g1dkdzUUE9PQ==) # <-- Put your encrypted keystore alias username here 
         #     node: latest
         environment:
+          xcode: "15.2"
+          cocoapods: "1.14.2"
           vars:
             JAVA_HOME: "/usr/lib/jvm/java-17-openjdk-amd64"
         scripts:
