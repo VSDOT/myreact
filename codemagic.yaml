@@ -6,7 +6,7 @@ workflows:
      # flutter: stable
     environment: 
        vars:
-         JAVA_HOME: "/usr/lib/jvm/java-17-openjdk-amd64" 
+         JAVA_HOME: "/react/myreact/java-17-openjdk-amd64" 
     scripts:
       - name: Install dependencies
         script: |
