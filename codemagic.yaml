@@ -23,7 +23,7 @@ workflows:
       - name: Build Android
         script: |
           cd android && chmod +x gradlew && ./gradlew assembleRelease
-          cd .. && npx ticketApp bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/ --assets-dest android/app/src/main/res/
+          cd .. && npx TicketApp bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/ --assets-dest android/app/src/main/res/
           cd android && ./gradlew assembleRelease
           
       - name: Build Android release
