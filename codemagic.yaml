@@ -1,52 +1,49 @@
 workflows:
-    react-native-android:
-        name: React Native 
-        max_build_duration: 120
-        #instance_type: mac_mini
-        # environment:
-        #     vars:
-        #         PACKAGE_NAME: "com.mainapp" # <-- Put your package name here e.g. com.domain.myapp
-        #         CM_KEYSTORE: Encrypted(Z0FBQUFBQmhKa0pmNjVGcks0SUJvOWRYZ1FaUC1qTTRTZHlZNU4yQUNBNjNTSjhQRUtMTkdsNVJ0NnU4NW9xTVVqV0RhQl9CbVdlTE4yeUxqOTg4UFd2eEtFdDUtUnhfcnc9PQ==) # <-- Put your encrypted keystore file here
-        #         CM_KEYSTORE_PASSWORD: Encrypted(Z0FBQUFBQmhKa0ozd3UtQ3I2QjdSeUg0eVVVUXNkb05yTWRkUG90SmdseHJOZ2tBdVBUaUVHeHdiMzFIWXhYeElsclJqdHpvd0tELTRTNU5fRUJUVGJjVkY4clU4UTNTU0E9PQ==) # <-- Put your encrypted keystore password here
-        #         CM_KEY_ALIAS_PASSWORD: Encrypted(Z0FBQUFBQmhKa0ozd3UtQ3I2QjdSeUg0eVVVUXNkb05yTWRkUG90SmdseHJOZ2tBdVBUaUVHeHdiMzFIWXhYeElsclJqdHpvd0tELTRTNU5fRUJUVGJjVkY4clU4UTNTU0E9PQ==) # <-- Put your encrypted keystore alias password here
-        #         CM_KEY_ALIAS_USERNAME: Encrypted(Z0FBQUFBQmhKa0tWVFVJbVFOSkZpaC1XS3B3cjdGLW1BbFhKR0N4N21ObzRoaVNhaXFlQmtraVZHN2Y4djVSX0k0Vk5QMHV0Z2xVbEhjeTNMdDZxU2taUHJUN2g1dkdzUUE9PQ==) # <-- Put your encrypted keystore alias username here 
-        #     node: latest
-        scripts:
-            - name: Install npm dependencies
-              script: |
-                                npm install
-            - name: Set Android SDK location
-              script: |
-                 echo "sdk.dir=$ANDROID_SDK_ROOT" > "$FCI_BUILD_DIR/android/local.properties"
-            # - name: Set up keystore
-            #   script: |
-            #         echo $CM_KEYSTORE | base64 --decode > /tmp/keystore.keystore
-            #         cat >> "$FCI_BUILD_DIR/android/key.properties" <<EOF
-            #         storePassword=$CM_KEYSTORE_PASSWORD
-            #         keyPassword=$CM_KEY_ALIAS_PASSWORD
-            #         keyAlias=$CM_KEY_ALIAS_USERNAME
-            #         storeFile=/tmp/keystore.keystore
-            #         EOF   
-            # - name: Tests                       # Insert before the build command
-            #   script: npm test 
-             
-        environment:
-            vars:
-              JAVA_HOME: "/usr/lib/jvm/java-17-openjdk-amd64"
-              scripts: |
-                - apt-get update
-                - apt-get install -y openjdk-17-jdk
-            - name: Build Android release
-              script: |
-                # Set environment variable so it can be used to increment build number in android/app/build.gradle
-                # Note that tracks can be specified when retrieving latest build number from Google Play, for example:
-                # export NEW_BUILD_NUMBER=$(($(google-play get-latest-build-number --package-name "$PACKAGE_NAME" --tracks=alpha) + 1))
-                # export NEW_BUILD_NUMBER=$(($(google-play get-latest-build-number --package-name "$PACKAGE_NAME") + 1))
-                cd android && chmod +x gradlew && ./gradlew assembleRelease                
-        artifacts:
-            - android/app/build/outputs/react/myreact.apk
+  react-native-android:
+    name: React Native Android
+    max_build_duration: 120
+    #instance_type: mac_mini
+    # environment:
+    #     vars:
+    #         PACKAGE_NAME: "com.mainapp" # <-- Put your package name here e.g. com.domain.myapp
+    #         CM_KEYSTORE: Encrypted(Z0FBQUFBQmhKa0pmNjVGcks0SUJvOWRYZ1FaUC1qTTRTZHlZNU4yQUNBNjNTSjhQRUtMTkdsNVJ0NnU4NW9xTVVqV0RhQl9CbVdlTE4yeUxqOTg4UFd2eEtFdDUtUnhfcnc9PQ==) # <-- Put your encrypted keystore file here
+    #         CM_KEYSTORE_PASSWORD: Encrypted(Z0FBQUFBQmhKa0ozd3UtQ3I2QjdSeUg0eVVVUXNkb05yTWRkUG90SmdseHJOZ2tBdVBUaUVHeHdiMzFIWXhYeElsclJqdHpvd0tELTRTNU5fRUJUVGJjVkY4clU4UTNTU0E9PQ==) # <-- Put your encrypted keystore password here
+    #         CM_KEY_ALIAS_PASSWORD: Encrypted(Z0FBQUFBQmhKa0ozd3UtQ3I2QjdSeUg0eVVVUXNkb05yTWRkUG90SmdseHJOZ2tBdVBUaUVHeHdiMzFIWXhYeElsclJqdHpvd0tELTRTNU5fRUJUVGJjVkY4clU4UTNTU0E9PQ==) # <-- Put your encrypted keystore alias password here
+    #         CM_KEY_ALIAS_USERNAME: Encrypted(Z0FBQUFBQmhKa0tWVFVJbVFOSkZpaC1XS3B3cjdGLW1BbFhKR0N4N21ObzRoaVNhaXFlQmtraVZHN2Y4djVSX0k0Vk5QMHV0Z2xVbEhjeTNMdDZxU2taUHJUN2g1dkdzUUE9PQ==) # <-- Put your encrypted keystore alias username here 
+    #     node: latest
+    scripts:
+      - name: Install npm dependencies
+        script: npm install
+      - name: Set Android SDK location
+        script: echo "sdk.dir=$ANDROID_SDK_ROOT" > "$FCI_BUILD_DIR/android/local.properties"
+      # - name: Set up keystore
+      #   script: |
+      #     echo $CM_KEYSTORE | base64 --decode > /tmp/keystore.keystore
+      #     cat >> "$FCI_BUILD_DIR/android/key.properties" <<EOF
+      #     storePassword=$CM_KEYSTORE_PASSWORD
+      #     keyPassword=$CM_KEY_ALIAS_PASSWORD
+      #     keyAlias=$CM_KEY_ALIAS_USERNAME
+      #     storeFile=/tmp/keystore.keystore
+      #     EOF   
+      # - name: Tests                       # Insert before the build command
+      #   script: npm test 
+    environment:
+      vars:
+        JAVA_HOME: "/usr/lib/jvm/java-17-openjdk-amd64"
+      scripts: |
+        - apt-get update
+        - apt-get install -y openjdk-17-jdk
+    - name: Build Android release
+      script: |
+        # Set environment variable so it can be used to increment build number in android/app/build.gradle
+        # Note that tracks can be specified when retrieving latest build number from Google Play, for example:
+        # export NEW_BUILD_NUMBER=$(($(google-play get-latest-build-number --package-name "$PACKAGE_NAME" --tracks=alpha) + 1))
+        # export NEW_BUILD_NUMBER=$(($(google-play get-latest-build-number --package-name "$PACKAGE_NAME") + 1))
+        cd android && chmod +x gradlew && ./gradlew assembleRelease                
+    artifacts:
+      - android/app/build/outputs/react/myreact.apk
 
-        publishing:
-            email:
-                recipients:
-                    - manimv1268@gmail.com    
+  publishing:
+    email:
+      recipients:
+        - manimv1268@gmail.com
