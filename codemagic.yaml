@@ -4,9 +4,9 @@ workflows:
     max_build_duration: 120
     #environment:
      # flutter: stable
-    environment: 
-       vars:
-         JAVA_HOME: "/react/myreact/java-17-openjdk-amd64" 
+    # environment: 
+    #    vars:
+    #      JAVA_HOME: "/react/myreact/java-17-openjdk-amd64" 
     scripts:
       - name: Install dependencies
         script: |
