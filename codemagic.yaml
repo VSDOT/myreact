@@ -4,6 +4,9 @@ workflows:
     max_build_duration: 120
     environment:
       flutter: stable
+    environment: 
+      vars:
+        JAVA_HOME: "/usr/lib/jvm/java-17-openjdk-amd64" 
     scripts:
       - name: Install dependencies
         script: |
@@ -22,10 +25,7 @@ workflows:
       #     npx react-native run-ios --configuration=release
       - name: Set Android SDK location
         script: |
-          echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/android/local.properties" 
-    environment:
-      vars:
-        JAVA_HOME: "/usr/lib/jvm/java-17-openjdk-amd64"      
+          echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/android/local.properties"      
       - name: Build Android
         script: |
           cd android && chmod +x gradlew && ./gradlew assembleRelease
