@@ -6,7 +6,10 @@ workflows:
       flutter: stable
     scripts:
       - name: Install dependencies
-        script: npm install
+        script: |
+          npm install
+          apt-get update
+          apt-get install -y openjdk-17-jdk
 
       # - name: Build iOS
       #   script: |
@@ -20,6 +23,9 @@ workflows:
       - name: Set Android SDK location
         script: |
           echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/android/local.properties" 
+    environment:
+      vars:
+        JAVA_HOME: "/usr/lib/jvm/java-17-openjdk-amd64"      
       - name: Build Android
         script: |
           cd android && chmod +x gradlew && ./gradlew assembleRelease
