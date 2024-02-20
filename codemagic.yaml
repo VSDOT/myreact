@@ -43,7 +43,7 @@ workflows:
     artifacts:
       - android/app/build/outputs/react/myreact.apk
 
-  publishing:
-    email:
-      recipients:
-        - manimv1268@gmail.com
+publishing:
+  email:
+    recipients:
+      - manimv1268@gmail.com
