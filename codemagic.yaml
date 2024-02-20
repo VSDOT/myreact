@@ -31,13 +31,13 @@ workflows:
             #   script: npm test 
              
         environment:
-          vars:
-            JAVA_HOME: "/usr/lib/jvm/java-17-openjdk-amd64"
-            scripts: |
+            vars:
+              JAVA_HOME: "/usr/lib/jvm/java-17-openjdk-amd64"
+              scripts: |
               - apt-get update
               - apt-get install -y openjdk-17-jdk
-          - name: Build Android release
-            script: |
+            - name: Build Android release
+              script: |
                 # Set environment variable so it can be used to increment build number in android/app/build.gradle
                 # Note that tracks can be specified when retrieving latest build number from Google Play, for example:
                 # export NEW_BUILD_NUMBER=$(($(google-play get-latest-build-number --package-name "$PACKAGE_NAME" --tracks=alpha) + 1))
