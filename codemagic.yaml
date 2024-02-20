@@ -12,9 +12,10 @@ workflows:
         script: |
           cd ios/
           pod install
-          xcodebuild clean -workspace TicketApp.xcworkspace -scheme TicketApp -configuration Release
-          xcodebuild archive -workspace TicketApp.xcworkspace -TicketApp -configuration Release -archivePath build/CTicketApp.xcarchive
-          xcodebuild -exportArchive -archivePath build/rTicketApp.xcarchive -exportOptionsPlist exportOptions.plist -exportPath build/TicketApp/ios
+          xcodebuild clean -workspace ticketApp.xcworkspace -scheme ticketApp -configur
+          ation Release
+          xcodebuild archive -workspace ticketApp.xcworkspace -ticketApp -configuration Release -archivePath build/CticketApp.xcarchive
+          xcodebuild -exportArchive -archivePath build/rticketApp.xcarchive -exportOptionsPlist exportOptions.plist -exportPath build/ticketApp/ios
           npx react-native run-ios --configuration=release
       - name: Set Android SDK location
         script: |
@@ -22,7 +23,7 @@ workflows:
       - name: Build Android
         script: |
           cd android && chmod +x gradlew && ./gradlew assembleRelease
-          cd .. && npx TicketApp bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/ --assets-dest android/app/src/main/res/
+          cd .. && npx ticketApp bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/ --assets-dest android/app/src/main/res/
           cd android && ./gradlew assembleRelease
           
       - name: Build Android release
