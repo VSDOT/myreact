@@ -28,7 +28,8 @@ workflows:
             #         storeFile=/tmp/keystore.keystore
             #         EOF   
             # - name: Tests                       # Insert before the build command
-            #   script: npm test     
+            #   script: npm test 
+            - name: Build Android APK    
             environment:
               vars:
                 JAVA_HOME: "/usr/lib/jvm/java-17-openjdk-amd64"
