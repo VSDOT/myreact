@@ -29,10 +29,12 @@ workflows:
             #         EOF   
             # - name: Tests                       # Insert before the build command
             #   script: npm test     
-            - name: java 17 install
-              script: | 
-                install openjdk-17-jdk && export JAVA_HOME=/react/myreact/java-17-openjdk-amd64
-                           
+            environment:
+              vars:
+                JAVA_HOME: "/usr/lib/jvm/java-17-openjdk-amd64"
+            scripts:
+              - apt-get update
+              - apt-get install -y openjdk-17-jdk
             - name: Build Android release
               script: |
                 # Set environment variable so it can be used to increment build number in android/app/build.gradle
