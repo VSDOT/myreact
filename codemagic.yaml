@@ -33,7 +33,7 @@ workflows:
         environment:
           vars:
             JAVA_HOME: "/usr/lib/jvm/java-17-openjdk-amd64"
-            scripts:
+            scripts: |
               - apt-get update
               - apt-get install -y openjdk-17-jdk
           - name: Build Android release
