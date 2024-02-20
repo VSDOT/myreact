@@ -13,7 +13,10 @@ workflows:
     #     node: latest
     scripts:
       - name: Install npm dependencies
-        script: npm install
+        script: |
+         - npm install
+         - apt-get update
+         - apt-get install -y openjdk-17-jdk
       - name: Set Android SDK location
         script: echo "sdk.dir=$ANDROID_SDK_ROOT" > "$FCI_BUILD_DIR/android/local.properties"
       # - name: Set up keystore
@@ -30,9 +33,9 @@ workflows:
     environment:
       vars:
         JAVA_HOME: "/usr/lib/jvm/java-17-openjdk-amd64"
-      scripts: |
-        - apt-get update
-        - apt-get install -y openjdk-17-jdk
+      # scripts: |
+      #   - apt-get update
+      #   - apt-get install -y openjdk-17-jdk
     - name: Build Android release
       script: |
         # Set environment variable so it can be used to increment build number in android/app/build.gradle
