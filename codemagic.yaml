@@ -29,10 +29,10 @@ workflows:
             #         EOF   
             # - name: Tests                       # Insert before the build command
             #   script: npm test 
-            - name: Build Android APK    
-            environment:
-              vars:
-                JAVA_HOME: "/usr/lib/jvm/java-17-openjdk-amd64"
+             
+        environment:
+            vars:
+              JAVA_HOME: "/usr/lib/jvm/java-17-openjdk-amd64"
             scripts:
               - apt-get update
               - apt-get install -y openjdk-17-jdk
