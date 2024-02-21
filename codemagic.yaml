@@ -42,9 +42,9 @@ workflows:
         #     recipients:
         #       - user_1@example.com
         #       - user_2@example.com
-            notify:
-              success: true     # To not receive a notification when a build succeeds
-              failure: false    # To not receive a notification when a build fails
+            # notify:
+            #   success: true     # To not receive a notification when a build succeeds
+            #   failure: false    # To not receive a notification when a build fails
           # google_play:
           #   credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
           #   track: alpha   # Any default or custom track that is not in ‘draft’ status
