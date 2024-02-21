@@ -73,9 +73,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "io.codemagic.cmreactnative"
+    namespace "com.movie_app"
     defaultConfig {
-        applicationId "io.codemagic.cmreactnative"
+        applicationId "com.movie_app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
