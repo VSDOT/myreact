@@ -1,50 +1,94 @@
 workflows:
-  react_native_workflow:
-    name: React Native Build 
+  react-native:
+    name: React Native App
     max_build_duration: 120
-    #environment:
-     # flutter: stable
-    # environment: 
-    #    vars:
-    #      JAVA_HOME: "/react/myreact/java-17-openjdk-amd64" 
+    environment:
+      vars:
+        XCODE_WORKSPACE: "{{ ADD_WORKSPACE_NAME_HERE }}"
+        XCODE_SCHEME: "{{ ADD_SCHEME_NAME_HERE }}"
+        node: latest
     scripts:
-      - name: Install dependencies
-        script: |
-          npm install
-        #apt-get update
-        #apt-get install -y openjdk-17-jdk
-
-      # - name: Build iOS
-      #   script: |
-      #     cd ios/
-      #     pod install
-      #     xcodebuild clean -workspace ticketApp.xcworkspace -scheme ticketApp -configur
-      #     ation Release
-      #     xcodebuild archive -workspace ticketApp.xcworkspace -ticketApp -configuration Release -archivePath build/CticketApp.xcarchive
-      #     xcodebuild -exportArchive -archivePath build/rticketApp.xcarchive -exportOptionsPlist exportOptions.plist -exportPath build/ticketApp/ios
-      #     npx react-native run-ios --configuration=release
-      - name: Set Android SDK location
-        script: |
-          echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/android/local.properties"      
-      - name: Build Android
-        script: |
-          cd android && chmod +x gradlew && ./gradlew assembleRelease
-         # cd .. && npx TicketApp bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/ --assets-dest android/app/src/main/res/
-          # cd android && ./gradlew assembleRelease
-          
-      - name: Build Android release
-        script:
-          npx TicketApp run-android --variant=release
+      - npm install
+      - echo "sdk.dir=$HOME/programs/android-sdk-macosx"> "$FCI_BUILD_DIR/android/local.properties"
+      - | 
+          # build Android
+          cd android
+          ./gradlew assembleDebug
     artifacts:
-       - ios/build/*.ipa
-       - android/app/build/outputs/react/newact.apk
+      - android/app/build/outputs/**/*.apk
+ 
 
-      #- android/app/build/outputs/**/*.apk
 
-    publishing:
-      email:
-        recipients:
-          - manimv1268@gmail.com        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# workflows:
+#   react_native_workflow:
+#     name: React Native Build 
+#     max_build_duration: 120
+#     #environment:
+#      # flutter: stable
+#     # environment: 
+#     #    vars:
+#     #      JAVA_HOME: "/react/myreact/java-17-openjdk-amd64" 
+#     scripts:
+#       - name: Install dependencies
+#         script: |
+#           npm install
+#         #apt-get update
+#         #apt-get install -y openjdk-17-jdk
+
+#       # - name: Build iOS
+#       #   script: |
+#       #     cd ios/
+#       #     pod install
+#       #     xcodebuild clean -workspace ticketApp.xcworkspace -scheme ticketApp -configur
+#       #     ation Release
+#       #     xcodebuild archive -workspace ticketApp.xcworkspace -ticketApp -configuration Release -archivePath build/CticketApp.xcarchive
+#       #     xcodebuild -exportArchive -archivePath build/rticketApp.xcarchive -exportOptionsPlist exportOptions.plist -exportPath build/ticketApp/ios
+#       #     npx react-native run-ios --configuration=release
+#       - name: Set Android SDK location
+#         script: |
+#           echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/android/local.properties"      
+#       - name: Build Android
+#         script: |
+#           cd android && chmod +x gradlew && ./gradlew assembleRelease
+#          # cd .. && npx TicketApp bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/ --assets-dest android/app/src/main/res/
+#           # cd android && ./gradlew assembleRelease
+          
+#       - name: Build Android release
+#         script:
+#           npx TicketApp run-android --variant=release
+#     artifacts:
+#        - ios/build/*.ipa
+#        - android/app/build/outputs/react/newact.apk
+
+#       #- android/app/build/outputs/**/*.apk
+
+#     # publishing:
+#     #   email:
+#     #     recipients:
+#     #       - manimv1268@gmail.com        
 
 
 
