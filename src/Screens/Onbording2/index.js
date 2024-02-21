@@ -1,1 +1,0 @@
-export { default } from './Onbording2.js'
