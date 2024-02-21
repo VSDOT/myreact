@@ -5,14 +5,14 @@ workflows:
     environment:
       vars:
         XCODE_WORKSPACE: "{{ ADD_WORKSPACE_NAME_HERE }}"
-        XCODE_SCHEME: "{{ ADD_SCHEME_NAME_HERE }}"
+        XCODE_SCHEME: "{{ ticketApp }}"
         node: latest
     scripts:
       - npm install
       - echo "sdk.dir=$HOME/programs/android-sdk-macosx"> "$FCI_BUILD_DIR/android/local.properties"
       - | 
           # build Android
-          cd android
+          cd android && chmod +x gradlew
           ./gradlew assembleDebug
     artifacts:
       - android/app/build/outputs/**/*.apk
