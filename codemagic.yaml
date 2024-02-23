@@ -4,8 +4,8 @@ workflows:
     max_build_duration: 120
     environment:
       vars:
-        # XCODE_WORKSPACE: "{{ ADD_WORKSPACE_NAME_HERE }}"
-        # XCODE_SCHEME: "{{ Movie_App }}"
+        XCODE_WORKSPACE: "{{ ADD_WORKSPACE_NAME_HERE }}"
+        XCODE_SCHEME: "{{ Movie_App }}"
         node: latest
     scripts:
       - npm update && npm audit fix
