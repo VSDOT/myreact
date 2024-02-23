@@ -5,17 +5,18 @@ workflows:
     environment:
       vars:
         #GRADLE_OPTS: "--warning-mode all"
-        XCODE_WORKSPACE: "{{ ADD_WORKSPACE_NAME_HERE }}"
-        XCODE_SCHEME: "{{ Movie_App }}"
+        # XCODE_WORKSPACE: "{{ ADD_WORKSPACE_NAME_HERE }}"
+        # XCODE_SCHEME: "{{ Movie_App }}"
         node: latest
     scripts:
-      - npm install
-      - npm audit fix
+      - npm update && npm audit fix
+      - npm install uglify-js
+      - npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
       - echo "sdk.dir=$HOME/programs/android-sdk-macosx"> "$FCI_BUILD_DIR/android/local.properties"
       - | 
           # build Android
           cd android && chmod +x gradlew
-          ./gradlew assembleDebug
+          ./gradlew assembleDebug --warning-mode all
     artifacts:
       - android/app/build/outputs/**/*.apk
  
